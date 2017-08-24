@@ -1,0 +1,10 @@
+body {
+    overflow: hidden;
+    padding-top: 62px;
+}
+.sui-navbar {
+    background: #28A3EF;
+}
+.container {
+    overflow: auto;
+}

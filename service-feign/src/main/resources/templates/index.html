@@ -1,10 +1,31 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>测试</title>
+    <title>title</title>
+    <thymeleaf th:replace="common/common :: common"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-    <div th:text="${name}">测试</div>
+<thymeleaf th:replace="common/head :: head"/>
+<div class="container">
+    <iframe src="context" id="mainIframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" onLoad="iFrameHeight()" width="100%"></iframe>
+</div>
+<script type="text/javascript">
+/*<![CDATA[*/
+function iFrameHeight() {
+    var ifm = document.getElementById("mainIframe");
+    var subWeb = document.frames ? document.frames["mainIframe"].document : ifm.contentDocument;
+    if(ifm != null && subWeb != null) {
+        ifm.height = subWeb.body.scrollHeight;
+        ifm.width = subWeb.body.scrollWidth;
+    }
+}
+function mainframe(url){
+    var iFrame1 = document.getElementById("mainIframe");
+    iFrame1.src=url;
+}
+/*]]>*/
+
+</script>
 </body>
 </html>
