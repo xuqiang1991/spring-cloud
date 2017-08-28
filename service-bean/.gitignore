@@ -9,11 +9,15 @@ target/
 .settings
 .springBeans
 
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
+mvnw
+.mvn
+mvnw.cmd
 
 ### NetBeans ###
 nbproject/private/
