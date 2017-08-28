@@ -1,16 +1,15 @@
 package com.cxqiang;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@EnableEurekaClient
-@RestController
+@ComponentScan(basePackages = "com.cxqiang")
+@MapperScan(basePackages = "com.cxqiang.mapper")
+@PropertySource("classpath:datasource.properties")
 public class ServiceHiApplication {
 
 	public static void main(String[] args) {
@@ -18,11 +17,4 @@ public class ServiceHiApplication {
 	}
 
 
-	@Value("${server.port}")
-	String port;
-
-	@RequestMapping("/hi")
-	public String home(@RequestParam String name) {
-		return "hi "+name+",i am from port:" +port;
-	}
 }
