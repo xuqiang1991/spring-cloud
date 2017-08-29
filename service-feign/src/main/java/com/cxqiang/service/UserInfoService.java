@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
  * Created by xuqiang
  * 2017/8/28.
  */
-@FeignClient(value = "service-hi",fallback = UserInfoServiceHystric.class)
+@FeignClient(value = "service-hi", fallback = UserInfoServiceHystric.class)
 public interface UserInfoService {
 
-    @RequestMapping(value = "/hi",method = RequestMethod.GET)
+    @RequestMapping(value = "/user/findByUsername",method = RequestMethod.GET)
     Account findByUsername(@RequestParam(value = "name") String name);
 }

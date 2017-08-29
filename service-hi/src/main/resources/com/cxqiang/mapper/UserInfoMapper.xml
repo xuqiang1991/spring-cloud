@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cxqiang.mapper.UserInfoMapper">
+
+    <resultMap type="com.cxqiang.entity.Account" id="resultAccount">
+        <id property="id" column="uid" jdbcType="BIGINT"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="username" column="account" jdbcType="VARCHAR"/>
+        <collection  property="authoritys" javaType="ArrayList" ofType="java.lang.String">
+            <result column="role_name"/>
+        </collection>
+    </resultMap>
+    <select id="findByUsername" resultMap="resultAccount">
+        SELECT u.uid, u.`password`,u.account, r.role_name
+        from sys_user u, sys_user_role_ref rr, sys_role r
+        WHERE u.uid = rr.user_id
+        and rr.role_id = r.id
+        and u.account = #{userName}
+    </select>
+</mapper>

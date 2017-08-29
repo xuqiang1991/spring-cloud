@@ -18,7 +18,7 @@ public class UserInfoService {
     @Autowired
     private UserInfoMapper userInfoMapper;
 
-    public Account findByUsername(@RequestParam String name) {
+    public Account findByUsername(String name) {
         return userInfoMapper.findByUsername(name);
     }
 }

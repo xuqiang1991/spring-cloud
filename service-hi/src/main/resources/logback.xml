@@ -3,9 +3,9 @@
     <include resource="org/springframework/boot/logging/logback/base.xml" />
 
     <appender name="RollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>logs/reptile-dynamic-score.log</File>
+        <File>logs/service-hi.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>logs/reptile-dynamic-score.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>logs/service-hi.%d{yyyy-MM-dd}.log</FileNamePattern>
             <maxHistory>3000</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -41,6 +41,6 @@
         </root>
     </springProfile>
 
-    <logger name="com.dadao.reptile.mapper" level="info"/>
+    <logger name="com.cxqiang.mapper" level="info"/>
 
 </configuration>

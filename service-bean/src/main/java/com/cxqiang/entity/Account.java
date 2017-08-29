@@ -1,14 +1,16 @@
 package com.cxqiang.entity;
 
+import java.util.List;
+
 /**
  * Created by xuqiang
  * 2017/8/28.
  */
 public class Account {
-    private String id;
+    private Long id;
     private String username;
     private String password;
-    private String[] authoritys;
+    private List<String> authoritys;
 
     public Account(){}
 
@@ -16,12 +18,15 @@ public class Account {
         this.username = username;
         this.password = password;
     }
-    public String getId() {
+
+    public Long getId() {
         return id;
     }
-    public void setId(String id) {
+
+    public void setId(Long id) {
         this.id = id;
     }
+
     public String getUsername() {
         return username;
     }
@@ -35,11 +40,11 @@ public class Account {
         this.password = password;
     }
 
-    public String[] getAuthoritys() {
+    public List<String> getAuthoritys() {
         return authoritys;
     }
 
-    public void setAuthoritys(String[] authoritys) {
+    public void setAuthoritys(List<String> authoritys) {
         this.authoritys = authoritys;
     }
 }

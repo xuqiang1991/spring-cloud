@@ -33,6 +33,12 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>com.cxqiang</groupId>
+			<artifactId>service-cache</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
@@ -70,12 +76,18 @@
             <artifactId>spring-boot-starter-security</artifactId>
             <version>RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>commons-collections</groupId>
-            <artifactId>commons-collections</artifactId>
-            <version>3.2.2</version>
-        </dependency>
-    </dependencies>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+	</dependencies>
 
 	<dependencyManagement>
 		<dependencies>
