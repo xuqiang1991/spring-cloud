@@ -1,13 +1,15 @@
 package com.cxqiang.config;
 
+import com.cxqiang.entity.sys.ResourceRole;
 import com.cxqiang.notation.ExpireCache;
 import com.cxqiang.notation.GetCache;
+import com.cxqiang.service.SysService;
+import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by xuqiang
@@ -16,10 +18,15 @@ import java.util.Map;
 @Component
 public class CustomRolesManager {
 
+    @Value("${sys.appId}")
+    private String appId;
+
+    @Autowired
+    SysService sysService;
+
     @ExpireCache(prefix = "sysAdmin_", key = {"resources"})
     public void reload() {
     }
-
 
     /**
      * 获取资源与角色
@@ -29,10 +36,15 @@ public class CustomRolesManager {
      */
     @GetCache(prefix = "sysAdmin_", expire = 86400, key = {"resources"})
     public Map<String, List<String>> getAllResources() {
-        Map<String, List<String>> resources = new HashMap<>();
-        List<String> roles = new ArrayList<>();
-        roles.add("管理员");
-        resources.put("/", roles);
+        Map<String,List<String>> resources = new LinkedHashMap<>();
+        List<ResourceRole> roleDtos = sysService.findAllResources(appId);
+        if (CollectionUtils.isNotEmpty(roleDtos)) {
+            for (ResourceRole roleDto : roleDtos) {
+                String url = roleDto.getUrl();
+                List<String> roles = roleDto.getRoles();
+                resources.put(url, roles);
+            }
+        }
         return resources;
     }
 }

@@ -2,19 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cxqiang.mapper.UserInfoMapper">
 
-    <resultMap type="com.cxqiang.entity.Account" id="resultAccount">
-        <id property="id" column="uid" jdbcType="BIGINT"/>
+    <resultMap type="com.cxqiang.entity.sys.Account" id="resultAccount">
+        <id property="id" column="user_id" jdbcType="BIGINT"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
-        <result property="username" column="account" jdbcType="VARCHAR"/>
-        <collection  property="authoritys" javaType="ArrayList" ofType="java.lang.String">
-            <result column="role_name"/>
-        </collection>
+        <result property="username" column="user_name" jdbcType="VARCHAR"/>
+        <collection property="authoritys" column="role_name" ofType="java.lang.String" javaType="list" />
     </resultMap>
     <select id="findByUsername" resultMap="resultAccount">
-        SELECT u.uid, u.`password`,u.account, r.role_name
+        SELECT u.user_id, u.`password`,u.user_name, r.role_name
         from sys_user u, sys_user_role_ref rr, sys_role r
-        WHERE u.uid = rr.user_id
+        WHERE u.user_id = rr.user_id
         and rr.role_id = r.id
-        and u.account = #{userName}
+        and u.user_name = #{userName}
     </select>
 </mapper>

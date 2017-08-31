@@ -1,11 +1,10 @@
 package com.cxqiang.service;
 
-import com.cxqiang.entity.Account;
+import com.cxqiang.entity.sys.Account;
 import com.cxqiang.mapper.UserInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by xuqiang
@@ -18,6 +17,11 @@ public class UserInfoService {
     @Autowired
     private UserInfoMapper userInfoMapper;
 
+    /**
+     * 查询用户
+     * @param name
+     * @return
+     */
     public Account findByUsername(String name) {
         return userInfoMapper.findByUsername(name);
     }

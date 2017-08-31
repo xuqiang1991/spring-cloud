@@ -1,6 +1,6 @@
 package com.cxqiang.config;
 
-import com.cxqiang.entity.Account;
+import com.cxqiang.entity.sys.Account;
 import com.cxqiang.service.UserInfoService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;

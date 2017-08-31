@@ -1,4 +1,4 @@
-package com.cxqiang.entity;
+package com.cxqiang.entity.sys;
 
 /**
  * Created by xuqiang
@@ -6,7 +6,7 @@ package com.cxqiang.entity;
  */
 public class Permission {
 
-    private int id;
+    private Integer id;
     //权限名称
     private String name;
 
@@ -17,13 +17,13 @@ public class Permission {
     private String url;
 
     //父节点id
-    private int pid;
+    private Integer pid;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -51,11 +51,11 @@ public class Permission {
         this.url = url;
     }
 
-    public int getPid() {
+    public Integer getPid() {
         return pid;
     }
 
-    public void setPid(int pid) {
+    public void setPid(Integer pid) {
         this.pid = pid;
     }
 }

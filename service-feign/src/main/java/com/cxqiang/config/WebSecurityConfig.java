@@ -27,6 +27,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 csrf().disable();
         http.authorizeRequests().accessDecisionManager(customAccessDecisionManager);
 
+        http.headers().frameOptions().disable();//跨域问题
+
         //解决乱码
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");

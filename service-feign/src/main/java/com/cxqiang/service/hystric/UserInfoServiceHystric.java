@@ -1,6 +1,6 @@
 package com.cxqiang.service.hystric;
 
-import com.cxqiang.entity.Account;
+import com.cxqiang.entity.sys.Account;
 import com.cxqiang.service.UserInfoService;
 import org.springframework.stereotype.Component;
 

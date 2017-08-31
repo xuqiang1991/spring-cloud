@@ -1,6 +1,6 @@
 package com.cxqiang.controller;
 
-import com.cxqiang.entity.Account;
+import com.cxqiang.entity.sys.Account;
 import com.cxqiang.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

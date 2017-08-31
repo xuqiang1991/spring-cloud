@@ -1,6 +1,6 @@
 package com.cxqiang.mapper;
 
-import com.cxqiang.entity.Account;
+import com.cxqiang.entity.sys.Account;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserInfoMapper {

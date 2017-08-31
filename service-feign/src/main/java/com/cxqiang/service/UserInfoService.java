@@ -1,8 +1,9 @@
 package com.cxqiang.service;
 
 
-import com.cxqiang.entity.Account;
+import com.cxqiang.entity.sys.Account;
 import com.cxqiang.service.hystric.UserInfoServiceHystric;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

@@ -1,4 +1,4 @@
-package com.cxqiang.entity;
+package com.cxqiang.entity.sys;
 
 import java.util.List;
 

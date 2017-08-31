@@ -7,20 +7,24 @@ CREATE TABLE `sys_resource` (
   `parent_id` int(11) NOT NULL DEFAULT '0' COMMENT '父资源ID',
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '资源id',
   `fun_name` varchar(64) DEFAULT '' COMMENT '菜单名称',
-  `appid` varchar(20) DEFAULT '' COMMENT '应用id',
+  `app_id` varchar(20) DEFAULT '' COMMENT '应用id',
   `type` tinyint(1) DEFAULT '0' COMMENT '0:功能，1:资源',
   `url` varchar(128) DEFAULT '',
   `description` varchar(256) DEFAULT '',
-  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态(0已停用 1已开启)',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态(0已停用1已开启)',
   `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
   `create_time` datetime NOT NULL COMMENT '新增时间',
-  `update_time` datetime NOT NULL COMMENT '修改时间',
+  `update_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='资源表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='资源表';
 
 -- ----------------------------
 -- Records of sys_resource
 -- ----------------------------
+INSERT INTO `sys_resource` VALUES ('0', '1', '一级菜单1', 'taobao', '0', '', '一级菜单1', '1', '1', '2017-08-31 00:00:00', '2017-08-31 00:00:00');
+INSERT INTO `sys_resource` VALUES ('0', '2', '一级菜单2', 'taobao', '0', '', '一级菜单2', '1', '2', '2017-08-31 00:00:00', '2017-08-31 00:00:00');
+INSERT INTO `sys_resource` VALUES ('1', '3', '一级子菜单1', 'taobao', '1', '/test', '一级菜单-子菜单1', '1', '1', '2017-08-31 00:00:00', '2017-08-31 00:00:00');
+INSERT INTO `sys_resource` VALUES ('1', '4', '一级子菜单2', 'taobao', '1', '/test', '一级菜单-子菜单2', '1', '2', '2017-08-31 00:00:00', '2017-08-31 00:00:00');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -32,30 +36,36 @@ CREATE TABLE `sys_role` (
   `description` varchar(256) DEFAULT '' COMMENT '角色描述',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态 0删除 1正常',
   `create_time` datetime NOT NULL COMMENT '创建时间',
-  `update_time` datetime NOT NULL COMMENT '修改时间',
+  `update_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
+INSERT INTO `sys_role` VALUES ('1', '管理员', '管理员', '1', '2017-08-31 00:00:00', '2017-08-31 00:00:00');
+INSERT INTO `sys_role` VALUES ('2', 'test', 'test', '1', '2017-08-31 00:00:00', '2017-08-31 00:00:00');
 
 -- ----------------------------
 -- Table structure for sys_role_resource_rel
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_resource_rel`;
 CREATE TABLE `sys_role_resource_rel` (
-  `id` int(11) NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL DEFAULT '0' COMMENT '角色id',
   `resource_id` int(11) NOT NULL DEFAULT '0' COMMENT '对应的操作资源ID',
   `create_time` datetime NOT NULL COMMENT '创建时间',
-  `update_time` datetime NOT NULL COMMENT '修改时间',
+  `update_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色资源关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='角色资源关系表';
 
 -- ----------------------------
 -- Records of sys_role_resource_rel
 -- ----------------------------
+INSERT INTO `sys_role_resource_rel` VALUES ('1', '1', '1', '2017-08-31 00:00:00', '2017-08-31 00:00:00');
+INSERT INTO `sys_role_resource_rel` VALUES ('2', '1', '2', '2017-08-31 00:00:00', '2017-08-31 00:00:00');
+INSERT INTO `sys_role_resource_rel` VALUES ('3', '1', '3', '2017-08-31 00:00:00', '2017-08-31 00:00:00');
+INSERT INTO `sys_role_resource_rel` VALUES ('4', '1', '4', '2017-08-31 00:00:00', '2017-08-31 00:00:00');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -72,29 +82,34 @@ CREATE TABLE `sys_user` (
   `login_time` datetime NOT NULL COMMENT '最后登录时间',
   `login_ip` varchar(64) DEFAULT '' COMMENT '最后登录ip',
   `create_time` datetime NOT NULL COMMENT '创建时间',
-  `update_time` datetime NOT NULL COMMENT '修改时间',
+  `update_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   `error_times` int(2) DEFAULT '0' COMMENT '登录时连续输入密码次数',
   `lock_time` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
+INSERT INTO `sys_user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', null, null, '', '1', '2017-08-31 00:00:00', '127.0.0.1', '2017-08-31 00:00:00', '2017-08-31 00:00:00', '0', null);
+INSERT INTO `sys_user` VALUES ('2', 'test', '21232f297a57a5a743894a0e4a801fc3', null, null, '', '1', '2017-08-31 00:00:00', '', '2017-08-31 00:00:00', '2017-08-31 00:00:00', '0', null);
 
 -- ----------------------------
 -- Table structure for sys_user_role_ref
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_role_ref`;
 CREATE TABLE `sys_user_role_ref` (
-  `id` int(11) NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(11) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
   `role_id` bigint(11) NOT NULL DEFAULT '0' COMMENT '角色id',
   `create_time` datetime NOT NULL COMMENT '创建时间',
-  `update_time` datetime NOT NULL COMMENT '修改时间',
+  `update_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户角色关系表';
 
 -- ----------------------------
 -- Records of sys_user_role_ref
 -- ----------------------------
+INSERT INTO `sys_user_role_ref` VALUES ('1', '1', '1', '2017-08-31 00:00:00', '2017-08-31 00:00:00');
+INSERT INTO `sys_user_role_ref` VALUES ('2', '1', '2', '2017-08-31 00:00:00', '2017-08-31 00:00:00');
+INSERT INTO `sys_user_role_ref` VALUES ('3', '2', '2', '2017-08-31 00:00:00', '2017-08-31 00:00:00');
