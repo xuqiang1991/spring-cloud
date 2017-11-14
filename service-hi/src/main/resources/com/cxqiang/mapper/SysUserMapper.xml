@@ -5,6 +5,7 @@
     <id column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="type" jdbcType="INTEGER" property="type" />
     <result column="salt" jdbcType="VARCHAR" property="salt" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="email" jdbcType="VARCHAR" property="email" />
@@ -17,11 +18,11 @@
     <result column="lock_time" jdbcType="TIMESTAMP" property="lockTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    user_id, user_name, password, salt, mobile, email, status, login_time, login_ip,
+    user_id, user_name, password, type, salt, mobile, email, status, login_time, login_ip, 
     create_time, update_time, error_times, lock_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select
+    select 
     <include refid="Base_Column_List" />
     from sys_user
     where user_id = #{userId,jdbcType=BIGINT}
@@ -30,17 +31,17 @@
     delete from sys_user
     where user_id = #{userId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" useGeneratedKeys="true" keyProperty="userId" parameterType="com.cxqiang.entity.sys.SysUser">
-    insert into sys_user (user_id, user_name, password,
-      salt, mobile, email,
-      status, login_time, login_ip,
-      create_time, update_time, error_times,
-      lock_time)
-    values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-      #{salt,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
-      #{status,jdbcType=BIT}, #{loginTime,jdbcType=TIMESTAMP}, #{loginIp,jdbcType=VARCHAR},
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{errorTimes,jdbcType=INTEGER},
-      #{lockTime,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.cxqiang.entity.sys.SysUser">
+    insert into sys_user (user_id, user_name, password, 
+      type, salt, mobile, 
+      email, status, login_time, 
+      login_ip, create_time, update_time, 
+      error_times, lock_time)
+    values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{salt,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{loginTime,jdbcType=TIMESTAMP}, 
+      #{loginIp,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{errorTimes,jdbcType=INTEGER}, #{lockTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.cxqiang.entity.sys.SysUser">
     insert into sys_user
@@ -53,6 +54,9 @@
       </if>
       <if test="password != null">
         password,
+      </if>
+      <if test="type != null">
+        type,
       </if>
       <if test="salt != null">
         salt,
@@ -95,6 +99,9 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
       <if test="salt != null">
         #{salt,jdbcType=VARCHAR},
       </if>
@@ -136,6 +143,9 @@
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
       <if test="salt != null">
         salt = #{salt,jdbcType=VARCHAR},
       </if>
@@ -173,6 +183,7 @@
     update sys_user
     set user_name = #{userName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
       salt = #{salt,jdbcType=VARCHAR},
       mobile = #{mobile,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},

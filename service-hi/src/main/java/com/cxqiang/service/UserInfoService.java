@@ -77,6 +77,7 @@ public class UserInfoService {
         SysUser sysUser = new SysUser();
         sysUser.setUserName(StringUtils.EMPTY);
         sysUser.setPassword(StringUtils.EMPTY);
+        sysUser.setType(sysThirdPartyUser.getType());
         sysUser.setStatus(true);
         sysUser.setErrorTimes(0);
         sysUser.setLoginTime(curTime);

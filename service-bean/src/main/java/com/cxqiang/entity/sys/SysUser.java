@@ -9,6 +9,8 @@ public class SysUser {
 
     private String password;
 
+    private Integer type;
+
     private String salt;
 
     private String mobile;
@@ -51,6 +53,14 @@ public class SysUser {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public String getSalt() {
