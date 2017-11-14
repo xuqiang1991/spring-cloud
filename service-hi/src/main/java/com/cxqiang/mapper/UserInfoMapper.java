@@ -7,4 +7,5 @@ public interface UserInfoMapper {
 
     Account findByUsername(@Param("userName") String userName);
 
+    Account findByUserId(@Param("userId") Long userId);
 }

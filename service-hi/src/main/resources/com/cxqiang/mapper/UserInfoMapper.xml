@@ -15,4 +15,12 @@
         and rr.role_id = r.id
         and u.user_name = #{userName}
     </select>
+
+    <select id="findByUserId" resultMap="resultAccount">
+        SELECT u.user_id, u.`password`,u.user_name, r.role_name
+        from sys_user u, sys_user_role_ref rr, sys_role r
+        WHERE u.user_id = rr.user_id
+        and rr.role_id = r.id
+        and u.user_id = #{userId}
+    </select>
 </mapper>
