@@ -2,7 +2,7 @@ package com.cxqiang.config;
 
 import com.cxqiang.entity.sys.Account;
 import com.cxqiang.service.UserInfoService;
-import com.cxqiang.utils.CxqiangUtil;
+import com.cxqiang.utils.CxqiangUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,7 +27,7 @@ public class SampleAuthenticationManager implements AuthenticationManager {
     public Authentication authenticate(Authentication auth) throws AuthenticationException {
         Account account = userInfoService.findAccountByUserId(Long.parseLong(auth.getName()));
         if (account != null) {
-            List<GrantedAuthority> authorities = CxqiangUtil.conversionAuthoritys(account.getAuthoritys());
+            List<GrantedAuthority> authorities = CxqiangUtils.conversionAuthoritys(account.getAuthoritys());
             return new UsernamePasswordAuthenticationToken(auth.getName(),
                     auth.getCredentials(), authorities);
         }

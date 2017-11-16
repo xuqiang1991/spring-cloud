@@ -31,7 +31,7 @@
     delete from sys_user
     where user_id = #{userId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.cxqiang.entity.sys.SysUser">
+  <insert id="insert" useGeneratedKeys="true" keyProperty="userId" parameterType="com.cxqiang.entity.sys.SysUser">
     insert into sys_user (user_id, user_name, password, 
       type, salt, mobile, 
       email, status, login_time, 
@@ -43,7 +43,7 @@
       #{loginIp,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{errorTimes,jdbcType=INTEGER}, #{lockTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.cxqiang.entity.sys.SysUser">
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="userId" parameterType="com.cxqiang.entity.sys.SysUser">
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">

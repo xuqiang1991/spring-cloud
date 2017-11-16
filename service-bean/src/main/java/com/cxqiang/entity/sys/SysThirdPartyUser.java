@@ -7,13 +7,31 @@ public class SysThirdPartyUser {
 
     private Long userId;
 
-    private Long thirdPartyId;
-
     private Integer type;
 
     private String loginName;
 
     private String nick;
+
+    private Long thirdPartyId;
+
+    private Long authAppId;
+
+    private String appAuthToken;
+
+    private Date expiresIn;
+
+    private Date reExpiresIn;
+
+    private String appRefreshToken;
+
+    private String authMethods;
+
+    private Date authStart;
+
+    private Date authEnd;
+
+    private String status;
 
     private String url;
 
@@ -43,14 +61,6 @@ public class SysThirdPartyUser {
         this.userId = userId;
     }
 
-    public Long getThirdPartyId() {
-        return thirdPartyId;
-    }
-
-    public void setThirdPartyId(Long thirdPartyId) {
-        this.thirdPartyId = thirdPartyId;
-    }
-
     public Integer getType() {
         return type;
     }
@@ -73,6 +83,86 @@ public class SysThirdPartyUser {
 
     public void setNick(String nick) {
         this.nick = nick == null ? null : nick.trim();
+    }
+
+    public Long getThirdPartyId() {
+        return thirdPartyId;
+    }
+
+    public void setThirdPartyId(Long thirdPartyId) {
+        this.thirdPartyId = thirdPartyId;
+    }
+
+    public Long getAuthAppId() {
+        return authAppId;
+    }
+
+    public void setAuthAppId(Long authAppId) {
+        this.authAppId = authAppId;
+    }
+
+    public String getAppAuthToken() {
+        return appAuthToken;
+    }
+
+    public void setAppAuthToken(String appAuthToken) {
+        this.appAuthToken = appAuthToken == null ? null : appAuthToken.trim();
+    }
+
+    public Date getExpiresIn() {
+        return expiresIn;
+    }
+
+    public void setExpiresIn(Date expiresIn) {
+        this.expiresIn = expiresIn;
+    }
+
+    public Date getReExpiresIn() {
+        return reExpiresIn;
+    }
+
+    public void setReExpiresIn(Date reExpiresIn) {
+        this.reExpiresIn = reExpiresIn;
+    }
+
+    public String getAppRefreshToken() {
+        return appRefreshToken;
+    }
+
+    public void setAppRefreshToken(String appRefreshToken) {
+        this.appRefreshToken = appRefreshToken == null ? null : appRefreshToken.trim();
+    }
+
+    public String getAuthMethods() {
+        return authMethods;
+    }
+
+    public void setAuthMethods(String authMethods) {
+        this.authMethods = authMethods == null ? null : authMethods.trim();
+    }
+
+    public Date getAuthStart() {
+        return authStart;
+    }
+
+    public void setAuthStart(Date authStart) {
+        this.authStart = authStart;
+    }
+
+    public Date getAuthEnd() {
+        return authEnd;
+    }
+
+    public void setAuthEnd(Date authEnd) {
+        this.authEnd = authEnd;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
     }
 
     public String getUrl() {

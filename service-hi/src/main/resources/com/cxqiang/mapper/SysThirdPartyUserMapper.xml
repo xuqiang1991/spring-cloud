@@ -1,171 +1,277 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cxqiang.mapper.SysThirdPartyUserMapper" >
-  <resultMap id="BaseResultMap" type="com.cxqiang.entity.sys.SysThirdPartyUser" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="user_id" property="userId" jdbcType="BIGINT" />
-    <result column="third_party_id" property="thirdPartyId" jdbcType="BIGINT" />
-    <result column="type" property="type" jdbcType="INTEGER" />
-    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
-    <result column="nick" property="nick" jdbcType="VARCHAR" />
-    <result column="url" property="url" jdbcType="VARCHAR" />
-    <result column="detail_url" property="detailUrl" jdbcType="VARCHAR" />
-    <result column="phone" property="phone" jdbcType="VARCHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cxqiang.mapper.SysThirdPartyUserMapper">
+  <resultMap id="BaseResultMap" type="com.cxqiang.entity.sys.SysThirdPartyUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="nick" jdbcType="VARCHAR" property="nick" />
+    <result column="third_party_id" jdbcType="BIGINT" property="thirdPartyId" />
+    <result column="auth_app_id" jdbcType="BIGINT" property="authAppId" />
+    <result column="app_auth_token" jdbcType="VARCHAR" property="appAuthToken" />
+    <result column="expires_in" jdbcType="TIMESTAMP" property="expiresIn" />
+    <result column="re_expires_in" jdbcType="TIMESTAMP" property="reExpiresIn" />
+    <result column="app_refresh_token" jdbcType="VARCHAR" property="appRefreshToken" />
+    <result column="auth_methods" jdbcType="VARCHAR" property="authMethods" />
+    <result column="auth_start" jdbcType="TIMESTAMP" property="authStart" />
+    <result column="auth_end" jdbcType="TIMESTAMP" property="authEnd" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="detail_url" jdbcType="VARCHAR" property="detailUrl" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    id, user_id, third_party_id, type, login_name, nick, url, detail_url, phone, email, 
-    created_time, update_time
+  <sql id="Base_Column_List">
+    id, user_id, type, login_name, nick, third_party_id, auth_app_id, app_auth_token, 
+    expires_in, re_expires_in, app_refresh_token, auth_methods, auth_start, auth_end, 
+    status, url, detail_url, phone, email, created_time, update_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sys_third_party_user
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sys_third_party_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.cxqiang.entity.sys.SysThirdPartyUser" >
-    insert into sys_third_party_user (user_id, third_party_id,
-      type, login_name, nick, 
+  <insert id="insert" parameterType="com.cxqiang.entity.sys.SysThirdPartyUser">
+    insert into sys_third_party_user (id, user_id, type, 
+      login_name, nick, third_party_id, 
+      auth_app_id, app_auth_token, expires_in, 
+      re_expires_in, app_refresh_token, auth_methods, 
+      auth_start, auth_end, status, 
       url, detail_url, phone, 
       email, created_time, update_time
       )
-    values (#{userId,jdbcType=BIGINT}, #{thirdPartyId,jdbcType=BIGINT},
-      #{type,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, #{nick,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, 
+      #{loginName,jdbcType=VARCHAR}, #{nick,jdbcType=VARCHAR}, #{thirdPartyId,jdbcType=BIGINT}, 
+      #{authAppId,jdbcType=BIGINT}, #{appAuthToken,jdbcType=VARCHAR}, #{expiresIn,jdbcType=TIMESTAMP}, 
+      #{reExpiresIn,jdbcType=TIMESTAMP}, #{appRefreshToken,jdbcType=VARCHAR}, #{authMethods,jdbcType=VARCHAR}, 
+      #{authStart,jdbcType=TIMESTAMP}, #{authEnd,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
       #{url,jdbcType=VARCHAR}, #{detailUrl,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cxqiang.entity.sys.SysThirdPartyUser" >
+  <insert id="insertSelective" parameterType="com.cxqiang.entity.sys.SysThirdPartyUser">
     insert into sys_third_party_user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="userId != null" >
+      <if test="userId != null">
         user_id,
       </if>
-      <if test="thirdPartyId != null" >
-        third_party_id,
-      </if>
-      <if test="type != null" >
+      <if test="type != null">
         type,
       </if>
-      <if test="loginName != null" >
+      <if test="loginName != null">
         login_name,
       </if>
-      <if test="nick != null" >
+      <if test="nick != null">
         nick,
       </if>
-      <if test="url != null" >
+      <if test="thirdPartyId != null">
+        third_party_id,
+      </if>
+      <if test="authAppId != null">
+        auth_app_id,
+      </if>
+      <if test="appAuthToken != null">
+        app_auth_token,
+      </if>
+      <if test="expiresIn != null">
+        expires_in,
+      </if>
+      <if test="reExpiresIn != null">
+        re_expires_in,
+      </if>
+      <if test="appRefreshToken != null">
+        app_refresh_token,
+      </if>
+      <if test="authMethods != null">
+        auth_methods,
+      </if>
+      <if test="authStart != null">
+        auth_start,
+      </if>
+      <if test="authEnd != null">
+        auth_end,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="url != null">
         url,
       </if>
-      <if test="detailUrl != null" >
+      <if test="detailUrl != null">
         detail_url,
       </if>
-      <if test="phone != null" >
+      <if test="phone != null">
         phone,
       </if>
-      <if test="email != null" >
+      <if test="email != null">
         email,
       </if>
-      <if test="createdTime != null" >
+      <if test="createdTime != null">
         created_time,
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="userId != null" >
+      <if test="userId != null">
         #{userId,jdbcType=BIGINT},
       </if>
-      <if test="thirdPartyId != null" >
-        #{thirdPartyId,jdbcType=BIGINT},
-      </if>
-      <if test="type != null" >
+      <if test="type != null">
         #{type,jdbcType=INTEGER},
       </if>
-      <if test="loginName != null" >
+      <if test="loginName != null">
         #{loginName,jdbcType=VARCHAR},
       </if>
-      <if test="nick != null" >
+      <if test="nick != null">
         #{nick,jdbcType=VARCHAR},
       </if>
-      <if test="url != null" >
+      <if test="thirdPartyId != null">
+        #{thirdPartyId,jdbcType=BIGINT},
+      </if>
+      <if test="authAppId != null">
+        #{authAppId,jdbcType=BIGINT},
+      </if>
+      <if test="appAuthToken != null">
+        #{appAuthToken,jdbcType=VARCHAR},
+      </if>
+      <if test="expiresIn != null">
+        #{expiresIn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reExpiresIn != null">
+        #{reExpiresIn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appRefreshToken != null">
+        #{appRefreshToken,jdbcType=VARCHAR},
+      </if>
+      <if test="authMethods != null">
+        #{authMethods,jdbcType=VARCHAR},
+      </if>
+      <if test="authStart != null">
+        #{authStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="authEnd != null">
+        #{authEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
         #{url,jdbcType=VARCHAR},
       </if>
-      <if test="detailUrl != null" >
+      <if test="detailUrl != null">
         #{detailUrl,jdbcType=VARCHAR},
       </if>
-      <if test="phone != null" >
+      <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="email != null" >
+      <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="createdTime != null" >
+      <if test="createdTime != null">
         #{createdTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cxqiang.entity.sys.SysThirdPartyUser" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.cxqiang.entity.sys.SysThirdPartyUser">
     update sys_third_party_user
-    <set >
-      <if test="userId != null" >
+    <set>
+      <if test="userId != null">
         user_id = #{userId,jdbcType=BIGINT},
       </if>
-      <if test="thirdPartyId != null" >
-        third_party_id = #{thirdPartyId,jdbcType=BIGINT},
-      </if>
-      <if test="type != null" >
+      <if test="type != null">
         type = #{type,jdbcType=INTEGER},
       </if>
-      <if test="loginName != null" >
+      <if test="loginName != null">
         login_name = #{loginName,jdbcType=VARCHAR},
       </if>
-      <if test="nick != null" >
+      <if test="nick != null">
         nick = #{nick,jdbcType=VARCHAR},
       </if>
-      <if test="url != null" >
+      <if test="thirdPartyId != null">
+        third_party_id = #{thirdPartyId,jdbcType=BIGINT},
+      </if>
+      <if test="authAppId != null">
+        auth_app_id = #{authAppId,jdbcType=BIGINT},
+      </if>
+      <if test="appAuthToken != null">
+        app_auth_token = #{appAuthToken,jdbcType=VARCHAR},
+      </if>
+      <if test="expiresIn != null">
+        expires_in = #{expiresIn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reExpiresIn != null">
+        re_expires_in = #{reExpiresIn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appRefreshToken != null">
+        app_refresh_token = #{appRefreshToken,jdbcType=VARCHAR},
+      </if>
+      <if test="authMethods != null">
+        auth_methods = #{authMethods,jdbcType=VARCHAR},
+      </if>
+      <if test="authStart != null">
+        auth_start = #{authStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="authEnd != null">
+        auth_end = #{authEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
         url = #{url,jdbcType=VARCHAR},
       </if>
-      <if test="detailUrl != null" >
+      <if test="detailUrl != null">
         detail_url = #{detailUrl,jdbcType=VARCHAR},
       </if>
-      <if test="phone != null" >
+      <if test="phone != null">
         phone = #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="email != null" >
+      <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="createdTime != null" >
+      <if test="createdTime != null">
         created_time = #{createdTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cxqiang.entity.sys.SysThirdPartyUser" >
+  <update id="updateByPrimaryKey" parameterType="com.cxqiang.entity.sys.SysThirdPartyUser">
     update sys_third_party_user
     set user_id = #{userId,jdbcType=BIGINT},
-      third_party_id = #{thirdPartyId,jdbcType=BIGINT},
       type = #{type,jdbcType=INTEGER},
       login_name = #{loginName,jdbcType=VARCHAR},
       nick = #{nick,jdbcType=VARCHAR},
+      third_party_id = #{thirdPartyId,jdbcType=BIGINT},
+      auth_app_id = #{authAppId,jdbcType=BIGINT},
+      app_auth_token = #{appAuthToken,jdbcType=VARCHAR},
+      expires_in = #{expiresIn,jdbcType=TIMESTAMP},
+      re_expires_in = #{reExpiresIn,jdbcType=TIMESTAMP},
+      app_refresh_token = #{appRefreshToken,jdbcType=VARCHAR},
+      auth_methods = #{authMethods,jdbcType=VARCHAR},
+      auth_start = #{authStart,jdbcType=TIMESTAMP},
+      auth_end = #{authEnd,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
       detail_url = #{detailUrl,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
@@ -174,7 +280,6 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
 
   <!--********************-->
   <select id="selectByThirdPartyId" resultMap="BaseResultMap">

@@ -2,7 +2,7 @@ package com.cxqiang.config;
 
 import com.cxqiang.entity.sys.Account;
 import com.cxqiang.service.UserInfoService;
-import com.cxqiang.utils.CxqiangUtil;
+import com.cxqiang.utils.CxqiangUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,7 +38,7 @@ public class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdap
 
             Account account = userInfoService.findAccountByUsername(username);
             if(account != null) {
-                List<GrantedAuthority> authorities = CxqiangUtil.conversionAuthoritys(account.getAuthoritys());
+                List<GrantedAuthority> authorities = CxqiangUtils.conversionAuthoritys(account.getAuthoritys());
                 return new User(account.getUsername(), account.getPassword(), true, true, true, true,
                         authorities);
             } else {

@@ -11,7 +11,7 @@ import java.util.List;
  * Created by xuqiang
  * 2017/11/14.
  */
-public class CxqiangUtil {
+public class CxqiangUtils {
 
     /**
      * 用户权限转换

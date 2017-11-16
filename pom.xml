@@ -56,6 +56,12 @@
             <version>${commons-codec.version}</version>
         </dependency>
 
+        <!-- 本地上传的 -->
+        <dependency>
+            <groupId>com.alipay</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>20171027120314</version>
+        </dependency>
     </dependencies>
     <modules>
         <module>eureka-server</module>
