@@ -1,6 +1,6 @@
-FROM java:8-jdk
-RUN mkdir /app
-WORKDIR /app
-COPY build/libs/eureka-server.jar /app
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app/eureka-server.jar", "--spring.profiles.active=docker"]
-EXPOSE 8761
+FROM java:8
+VOLUME /tmp
+ADD eureka-server-0.0.1-SNAPSHOT.jar app.jar
+RUN bash -c 'touch /app.jar'
+EXPOSE 8888
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
