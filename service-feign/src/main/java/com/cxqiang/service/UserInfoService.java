@@ -22,7 +22,7 @@ public interface UserInfoService {
      * @param name
      * @return
      */
-    @RequestMapping(value = "/user/findByAccountUsername",method = RequestMethod.GET)
+    @RequestMapping(value = "/user/findAccountByUsername",method = RequestMethod.GET)
     Account findAccountByUsername(@RequestParam(value = "name") String name);
 
     /**
